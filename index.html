@@ -235,13 +235,14 @@ const PHOTOS = [
 ];
 
 class Component extends DCLogic {
-  state = { activeSrc: PHOTOS[0].src, openSrc: null, zoom: false, dims: {}, status: 'idle', narrow: typeof window !== 'undefined' && window.innerWidth < 1000 };
+  state = { activeSrc: PHOTOS[0].src, openSrc: null, zoom: false, dims: {}, status: 'idle', narrow: typeof window !== 'undefined' && window.innerWidth < 1000, canHover: typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches };
   scrollRef = React.createRef();
 
   componentDidMount() {
     this.onResize = () => {
       const narrow = window.innerWidth < 1000;
-      if (narrow !== this.state.narrow) this.setState({ narrow });
+      const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (narrow !== this.state.narrow || canHover !== this.state.canHover) this.setState({ narrow, canHover });
     };
     this.onResize();
     window.addEventListener('resize', this.onResize);
@@ -343,7 +344,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const accent = this.props.accent ?? '#e9c58c';
-    const hoverPreview = this.props.hoverPreview ?? true;
+    const hoverPreview = (this.props.hoverPreview ?? true) && this.state.canHover;
     const active = PHOTOS[this.idx(this.state.activeSrc)];
     const oi = this.state.openSrc ? this.idx(this.state.openSrc) : -1;
     const lb = oi < 0 ? null : {
