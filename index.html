@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cpath%20d='M16%200.5c1.7%209.1%206.7%2014.1%2015.5%2015.5C22.7%2017.4%2017.7%2022.4%2016%2031.5%2014.3%2022.4%209.3%2017.4%200.5%2016%209.3%2014.6%2014.3%209.6%2016%200.5z'%20fill='%23e9c58c'/%3E%3C/svg%3E">
+<title>JP Astrophotography</title>
+<meta name="description" content="Deep-sky astrophotography from a Bortle 5 backyard in Oklahoma — galaxies, nebulae and the Moon, shot with a Seestar S50.">
+<meta name="author" content="JP Astrophotography">
+<meta property="og:title" content="JP Astrophotography">
+<meta property="og:description" content="Deep-sky astrophotography from a Bortle 5 backyard in Oklahoma.">
+<!-- Must stay a full absolute URL — link previews break with a relative path. -->
+<meta property="og:image" content="https://jp-astro.com/images/m31-andromeda.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: oklch(0.13 0.003 285); }
+  a { color: oklch(0.93 0.003 285); text-decoration: none; }
+  a:hover { color: oklch(0.82 0.10 85); }
+  @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+  input::placeholder, textarea::placeholder { color: oklch(0.44 0.003 285); }
+  ::selection { background: oklch(0.82 0.10 85); color: oklch(0.13 0.003 285); }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; box-sizing: border-box; background: oklch(0.13 0.003 285); color: oklch(0.93 0.003 285); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: clamp(20px, 5vw, 36px) clamp(18px, 5vw, 44px) 64px; -webkit-font-smoothing: antialiased;">
+  <div style="max-width: 1180px; margin: 0 auto;">
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 20px; padding-bottom: 44px;">
+      <h1 style="margin: 0; font-weight: 400; font-size: clamp(25px, 6vw, 34px); letter-spacing: -0.012em;">JP Astrophotography</h1>
+      <div style="display: flex; gap: 24px; font-size: 15px; color: oklch(0.66 0.003 285);">
+        <a href="#gallery" style="color: inherit;" style-hover="color: {{ accent }}">Gallery</a>
+        <a href="#about" style="color: inherit;" style-hover="color: {{ accent }}">About</a>
+        <a href="#contact" style="color: inherit;" style-hover="color: {{ accent }}">Contact</a>
+      </div>
+    </div>
+
+    <div style="font-size: 17px; line-height: 1.55; max-width: 620px; text-wrap: pretty; color: oklch(0.74 0.003 285);">Over the 5 months I've been doing astrophotography, I've improved A LOT. My most recent works are at the top of this gallery, and my oldest works are at the bottom. This list will be constantly expanding as I take more images of the skies above us, so stay tuned!</div>
+
+    <div id="gallery" style="display: flex; flex-wrap: wrap; gap: clamp(30px, 4vw, 56px); align-items: flex-start; margin-top: clamp(38px, 6vw, 60px); padding-top: 4px;">
+
+      <div style="flex: 1 1 380px; min-width: 0;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.01em; color: oklch(0.56 0.003 285); padding-bottom: 18px;">Selected frames</div>
+        <div style="border-bottom: 1px solid oklch(0.27 0.003 285);">
+          <sc-for list="{{ photos }}" as="p" hint-placeholder-count="6">
+            <div onMouseEnter="{{ p.onEnter }}" onClick="{{ p.onOpen }}" style="display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; align-items: baseline; gap: 14px; padding: 19px 10px; border-top: 1px solid oklch(0.27 0.003 285); cursor: pointer; color: oklch(0.93 0.003 285); --mark: {{ p.mark }}; box-shadow: inset 2px 0 0 var(--mark); transition: color 0.2s ease, background 0.2s ease, padding-left 0.25s ease, box-shadow 0.25s ease;" style-hover="color: {{ accent }}; background: oklch(0.175 0.003 285); padding-left: 18px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: oklch(0.48 0.003 285);">{{ p.num }}</div>
+              <div>
+                <div style="font-size: clamp(21px, 2.6vw, 25px); letter-spacing: -0.015em; color: inherit;">{{ p.target }}</div>
+                <div style="margin-top: 7px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: oklch(0.58 0.003 285);">{{ p.catalog }}</div>
+              </div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: oklch(0.5 0.003 285); white-space: nowrap;">{{ p.date }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="flex: 1 1 460px; min-width: 0; --stage-pos: {{ stagePos }}; --stage-order: {{ stageOrder }}; position: var(--stage-pos); top: 36px; order: var(--stage-order);">
+        <div style="--stage-min-h: {{ stageMinH }}; min-height: var(--stage-min-h); display: flex; align-items: center; justify-content: center;">
+          <img src="{{ activeSrc }}" loading="lazy" alt="{{ activeAlt }}" onClick="{{ openActive }}" decoding="async" style="max-width: 100%; box-sizing: border-box; --stage-max-h: {{ stageMaxH }}; max-height: var(--stage-max-h); width: auto; height: auto; display: block; border: 1px solid oklch(0.32 0.003 285); box-shadow: 0 18px 48px -30px oklch(0.05 0.003 285 / 0.9); cursor: zoom-in; transition: border-color 0.3s ease;" style-hover="border-color: oklch(0.5 0.003 285);">
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: oklch(0.58 0.003 285);">
+          <div>{{ activeLabel }}</div>
+          <div style="color: oklch(0.44 0.003 285);">{{ activeSize }} px, click to enlarge</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="about" style="display: grid; --side-cols: {{ sideCols }}; grid-template-columns: var(--side-cols); gap: clamp(14px, 3vw, 32px); margin-top: clamp(64px, 10vw, 130px); padding-top: 32px; border-top: 1px solid oklch(0.27 0.003 285);">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.01em; color: oklch(0.56 0.003 285);">About</div>
+      <div style="display: flex; flex-direction: column; gap: 18px; font-size: clamp(17px, 2.2vw, 20px); line-height: 1.55; letter-spacing: -0.005em; max-width: 620px; text-wrap: pretty; color: oklch(0.88 0.003 285);">
+        <div>I’m a 16-year-old self-taught astrophotographer from Oklahoma, shooting our sky from my backyard under Bortle 5 skies. Right now, my entire rig is a Seestar S50. Fighting suburban light pollution with a small smart telescope isn't always easy, but honestly, working within those limits has been the best teacher. It’s forced me to get creative and squeeze every ounce of detail I can out of my gear.</div>
+        <div>For me, astrophotography is this perfect mix of patience and science. I’m pretty hooked on the technical grind. Managing signal-to-noise ratios, stacking frames, and spending hours in the editing process is VERY painful sometimes, but it's also just as fun for me as seeing the final image.</div>
+        <div>I’ve always been a massive space and aerospace nerd, but there’s something uniquely mind-blowing about capturing light that have traveled for millions of years and turning them into something tangible on my screen and yours too. As I keep learning and eventually upgrade to a bigger rig, my goal is simple: go deeper, push my limits, and see just how far I can take this.</div>
+      </div>
+    </div>
+
+    <div id="contact" style="display: grid; --side-cols: {{ sideCols }}; grid-template-columns: var(--side-cols); gap: clamp(14px, 3vw, 32px); margin-top: clamp(52px, 7vw, 72px); padding-top: 32px; border-top: 1px solid oklch(0.27 0.003 285);">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.01em; color: oklch(0.56 0.003 285);">Contact</div>
+      <div>
+        <form onSubmit="{{ submit }}" style="max-width: 660px; display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+            <label style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 11px;">
+              <span style="font-size: 14px; color: oklch(0.62 0.003 285);">Name</span>
+              <input type="text" name="name" required="required" autocomplete="name" placeholder="Your name" style="width: 100%; box-sizing: border-box; -webkit-appearance: none; appearance: none; background: oklch(0.175 0.003 285); border: 1px solid oklch(0.28 0.003 285); border-radius: 0; padding: 14px 15px; color: oklch(0.93 0.003 285); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; transition: border-color 0.2s ease;" style-focus="outline: none; border-color: {{ accent }};">
+            </label>
+            <label style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 11px;">
+              <span style="font-size: 14px; color: oklch(0.62 0.003 285);">Email</span>
+              <input type="email" name="email" required="required" autocomplete="email" placeholder="you@example.com" style="width: 100%; box-sizing: border-box; -webkit-appearance: none; appearance: none; background: oklch(0.175 0.003 285); border: 1px solid oklch(0.28 0.003 285); border-radius: 0; padding: 14px 15px; color: oklch(0.93 0.003 285); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; transition: border-color 0.2s ease;" style-focus="outline: none; border-color: {{ accent }};">
+            </label>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 11px;">
+            <span style="font-size: 14px; color: oklch(0.62 0.003 285);">Subject</span>
+            <input type="text" name="subject" required="required" placeholder="What it's about" style="width: 100%; box-sizing: border-box; -webkit-appearance: none; appearance: none; background: oklch(0.175 0.003 285); border: 1px solid oklch(0.28 0.003 285); border-radius: 0; padding: 14px 15px; color: oklch(0.93 0.003 285); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; transition: border-color 0.2s ease;" style-focus="outline: none; border-color: {{ accent }};">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 11px;">
+            <span style="font-size: 14px; color: oklch(0.62 0.003 285);">Message</span>
+            <textarea name="message" rows="6" required="required" placeholder="Say hello" style="width: 100%; box-sizing: border-box; -webkit-appearance: none; appearance: none; background: oklch(0.175 0.003 285); border: 1px solid oklch(0.28 0.003 285); border-radius: 0; padding: 14px 15px; color: oklch(0.93 0.003 285); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.5; resize: vertical; transition: border-color 0.2s ease;" style-focus="outline: none; border-color: {{ accent }};"></textarea>
+          </label>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 4px;">
+            <button type="submit" disabled="{{ sending }}" style="-webkit-appearance: none; appearance: none; background: transparent; border: 1px solid oklch(0.4 0.003 285); border-radius: 0; color: oklch(0.93 0.003 285); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; padding: 13px 26px; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease;" style-hover="background: oklch(0.21 0.003 285); border-color: oklch(0.52 0.003 285);">{{ submitLabel }}</button>
+            <div style="font-size: 14px; --status-color: {{ statusColor }}; color: var(--status-color);">{{ statusText }}</div>
+          </div>
+        </form>
+
+        <div style="margin-top: 26px; font-size: 14px; color: oklch(0.58 0.003 285);">Or email me directly at <a href="mailto:jtpraterap@gmail.com" style="color: oklch(0.78 0.003 285); border-bottom: 1px solid oklch(0.32 0.003 285); padding-bottom: 2px;">jtpraterap@gmail.com</a></div>
+        <div style="display: flex; gap: 20px; margin-top: 14px; font-size: 14px;">
+          <a href="https://www.instagram.com/jasonprater625/" target="_blank" rel="noopener" style="color: oklch(0.66 0.003 285);" style-hover="color: {{ accent }}">Instagram</a>
+          <a href="https://www.tiktok.com/@jason_p.1" target="_blank" rel="noopener" style="color: oklch(0.66 0.003 285);" style-hover="color: {{ accent }}">TikTok</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: clamp(60px, 8vw, 110px); padding-top: 22px; border-top: 1px solid oklch(0.24 0.003 285); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.01em; color: oklch(0.48 0.003 285);">
+      <div>Copyright © 2026 JP Astrophotography. All rights reserved.</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#" style="color: inherit;" style-hover="color: {{ accent }}">Top ↑</a>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ lb }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ close }}" style="position: fixed; inset: 0; z-index: 60; background: oklch(0.075 0.003 285 / 0.96); backdrop-filter: blur(10px); display: flex; flex-direction: column; --lb-pad: {{ lbPad }}; padding: var(--lb-pad); box-sizing: border-box; animation: fadeIn 0.18s ease-out; cursor: zoom-out;">
+      <div style="display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: oklch(0.6 0.003 285);">
+        <div style="--accent: {{ accent }}; color: var(--accent);">{{ lb.counter }}</div>
+        <div style="display: flex; gap: 26px; align-items: center;">
+          <div onClick="{{ toggleZoom }}" style="cursor: pointer; letter-spacing: 0.02em; color: oklch(0.72 0.003 285); border-bottom: 1px solid oklch(0.34 0.003 285); padding-bottom: 2px;" style-hover="color: {{ accent }}">{{ zLabel }}</div>
+          <div onClick="{{ close }}" style="cursor: pointer; letter-spacing: 0.02em;" style-hover="color: oklch(0.93 0.003 285)">Close ×</div>
+        </div>
+      </div>
+
+      <div style="flex: 1; min-height: 0; display: flex; align-items: stretch; justify-content: center; gap: 14px; padding: 22px 0;">
+        <div onClick="{{ prev }}" style="flex: 0 0 auto; display: flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.5 0.003 285); cursor: pointer; --arrow-pad: {{ arrowPad }}; padding: var(--arrow-pad);" style-hover="color: {{ accent }}">←</div>
+        <div ref="{{ scrollRef }}" onMouseDown="{{ panStart }}" onMouseMove="{{ panMove }}" onMouseUp="{{ panEnd }}" onMouseLeave="{{ panEnd }}" style="flex: 1 1 auto; min-width: 0; display: flex; --z-align: {{ zAlign }}; --z-overflow: {{ zOverflow }}; --z-cursor: {{ zCursor }}; align-items: var(--z-align); justify-content: var(--z-align); overflow: var(--z-overflow); cursor: var(--z-cursor);">
+          <img src="{{ lb.src }}" loading="lazy" alt="{{ lb.target }}" onClick="{{ toggleZoom }}" decoding="async" style="display: block; margin: auto; flex: 0 0 auto; --z-max: {{ zMax }}; max-width: var(--z-max); max-height: var(--z-max);">
+        </div>
+        <div onClick="{{ next }}" style="flex: 0 0 auto; display: flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.5 0.003 285); cursor: pointer; --arrow-pad: {{ arrowPad }}; padding: var(--arrow-pad);" style-hover="color: {{ accent }}">→</div>
+      </div>
+
+      <div onClick="{{ stop }}" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 28px; cursor: default;">
+        <div style="flex: 1 1 300px; min-width: 0;">
+          <div style="font-size: 24px; letter-spacing: -0.02em; color: oklch(0.95 0.003 285);">{{ lb.target }}</div>
+          <div style="margin-top: 9px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: oklch(0.6 0.003 285);">{{ lb.label }}</div>
+          <div style="margin-top: 14px; font-size: 15px; line-height: 1.55; max-width: 520px; text-wrap: pretty; color: oklch(0.74 0.003 285);">{{ lb.note }}</div>
+        </div>
+        <sc-if value="{{ showCaptureData }}" hint-placeholder-val="{{ true }}">
+          <div style="flex: 0 1 300px; display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 10px 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; padding-bottom: 4px;">
+            <div style="color: oklch(0.48 0.003 285); letter-spacing: 0.02em;">Gear</div>
+            <div style="color: oklch(0.8 0.003 285);">{{ lb.gear }}</div>
+            <div style="color: oklch(0.48 0.003 285); letter-spacing: 0.02em;">Exposure</div>
+            <div style="color: oklch(0.8 0.003 285);">{{ lb.exposure }}</div>
+            <div style="color: oklch(0.48 0.003 285); letter-spacing: 0.02em;">Date</div>
+            <div style="color: oklch(0.8 0.003 285);">{{ lb.date }}</div>
+            <div style="color: oklch(0.48 0.003 285); letter-spacing: 0.02em;">Pixels</div>
+            <div style="color: oklch(0.8 0.003 285);">{{ lb.size }}</div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#e9c58c&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#e9c58c&quot;,&quot;#9dbde8&quot;,&quot;#a4d6bd&quot;,&quot;#e6e2ec&quot;],&quot;section&quot;:&quot;Look&quot;},&quot;showCaptureData&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Look&quot;},&quot;hoverPreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+/* Where the contact form delivers. */
+const CONTACT_EMAIL = 'jtpraterap@gmail.com';
+
+/* ─────────────────────────────────────────────────────────────
+   YOUR PHOTOS — edit this list. Copy a block to add a photo.
+   Drop new image files in the images/ folder, then point src at them.
+   ───────────────────────────────────────────────────────────── */
+const PHOTOS = [
+  {
+    src: 'images/lunar-eclipse.png',
+    catalog: 'Luna',
+    target: 'Total Lunar Eclipse',
+    date: '27 August 2026',
+    gear: 'Seestar S50',
+    exposure: '—',
+    note: '',
+  },
+  {
+    src: 'images/m31-andromeda.png',
+    catalog: 'M31',
+    target: 'Andromeda Galaxy',
+    date: '14 August 2026',
+    gear: 'Seestar S50',
+    exposure: '—',
+    note: '',
+  },
+  {
+    src: 'images/m81-m82.png',
+    catalog: 'M81 / M82',
+    target: "Bode's and Cigar Galaxies",
+    date: '13 May 2026',
+    gear: 'Seestar S50',
+    exposure: '—',
+    note: '',
+  },
+  {
+    src: 'images/rosette-nebula.png',
+    catalog: 'NGC 2237',
+    target: 'Rosette Nebula',
+    date: '19 March 2026',
+    gear: 'Seestar S50',
+    exposure: '—',
+    note: '',
+  },
+  {
+    src: 'images/m106.png',
+    catalog: 'M106',
+    target: 'Spiral in Canes Venatici',
+    date: '15 March 2026',
+    gear: 'Seestar S50',
+    exposure: '—',
+    note: '',
+  },
+  {
+    src: 'images/m51.png',
+    catalog: 'M51',
+    target: 'Whirlpool Galaxy',
+    date: '16 February 2026',
+    gear: 'Seestar S50',
+    exposure: '—',
+    note: '',
+  },
+];
+
+class Component extends DCLogic {
+  state = { activeSrc: PHOTOS[0].src, openSrc: null, zoom: false, dims: {}, status: 'idle', narrow: typeof window !== 'undefined' && window.innerWidth < 1000 };
+  scrollRef = React.createRef();
+
+  componentDidMount() {
+    this.onResize = () => {
+      const narrow = window.innerWidth < 1000;
+      if (narrow !== this.state.narrow) this.setState({ narrow });
+    };
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+
+    // Preload every photo at full resolution, and record its true pixel size.
+    PHOTOS.forEach((p) => {
+      const img = new Image();
+      img.onload = () => this.setState((s) => ({
+        dims: { ...s.dims, [p.src]: img.naturalWidth + ' \u00d7 ' + img.naturalHeight },
+      }));
+      img.src = p.src;
+    });
+
+    this.onKey = (e) => {
+      if (!this.state.openSrc) return;
+      if (e.key === 'Escape') this.setState({ openSrc: null, zoom: false });
+      if (e.key === 'ArrowRight') this.step(1);
+      if (e.key === 'ArrowLeft') this.step(-1);
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  // Photos are identified by their src, never by list position.
+  idx(src) {
+    const i = PHOTOS.findIndex((p) => p.src === src);
+    return i < 0 ? 0 : i;
+  }
+
+  step(d) {
+    const n = PHOTOS.length;
+    const from = this.idx(this.state.openSrc || this.state.activeSrc);
+    const p = PHOTOS[(from + d + n) % n];
+    this.setState({ openSrc: p.src, activeSrc: p.src, zoom: false });
+  }
+
+  // Fit <-> 100% (true pixel size, scrollable).
+  toggleZoom = (e) => {
+    if (e) e.stopPropagation();
+    this.setState((s) => ({ zoom: !s.zoom }), () => {
+      const el = this.scrollRef.current;
+      if (el && this.state.zoom) {
+        el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
+        el.scrollTop = (el.scrollHeight - el.clientHeight) / 2;
+      }
+    });
+  };
+
+  panStart = (e) => {
+    if (!this.state.zoom) return;
+    e.preventDefault();
+    const el = this.scrollRef.current;
+    this.drag = { x: e.clientX, y: e.clientY, left: el.scrollLeft, top: el.scrollTop };
+  };
+
+  panMove = (e) => {
+    if (!this.drag) return;
+    const el = this.scrollRef.current;
+    el.scrollLeft = this.drag.left - (e.clientX - this.drag.x);
+    el.scrollTop = this.drag.top - (e.clientY - this.drag.y);
+    if (Math.abs(e.clientX - this.drag.x) + Math.abs(e.clientY - this.drag.y) > 4) this.panned = true;
+  };
+
+  panEnd = () => { this.drag = null; };
+
+  submit = async (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const get = (n) => (f.elements[n] ? f.elements[n].value : '');
+    const body = {
+      name: get('name'),
+      email: get('email'),
+      message: get('message'),
+      _subject: get('subject') || ('JP Astrophotography — message from ' + get('name')),
+      _template: 'table',
+    };
+    this.setState({ status: 'sending' });
+    try {
+      const r = await fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!r.ok) throw new Error('send failed');
+      f.reset();
+      this.setState({ status: 'sent' });
+    } catch (err) {
+      this.setState({ status: 'error' });
+    }
+  };
+
+  label(p) {
+    return p.catalog + ', ' + p.date;
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#e9c58c';
+    const hoverPreview = this.props.hoverPreview ?? true;
+    const active = PHOTOS[this.idx(this.state.activeSrc)];
+    const oi = this.state.openSrc ? this.idx(this.state.openSrc) : -1;
+    const lb = oi < 0 ? null : {
+      ...PHOTOS[oi],
+      label: this.label(PHOTOS[oi]),
+      counter: String(oi + 1).padStart(2, '0') + ' / ' + String(PHOTOS.length).padStart(2, '0'),
+    };
+
+    const zoom = this.state.zoom;
+    const narrow = this.state.narrow;
+    if (lb) lb.size = this.state.dims[lb.src] || '—';
+
+    return {
+      accent,
+      showCaptureData: this.props.showCaptureData ?? true,
+      photos: PHOTOS.map((p, i) => ({
+        ...p,
+        num: String(i + 1).padStart(2, '0'),
+        mark: p.src === this.state.activeSrc ? accent : 'transparent',
+        onEnter: hoverPreview ? () => this.setState({ activeSrc: p.src }) : null,
+        onOpen: () => this.setState({ activeSrc: p.src, openSrc: p.src, zoom: false }),
+      })),
+      activeSrc: active.src,
+      activeAlt: active.target,
+      activeLabel: this.label(active),
+      activeSize: this.state.dims[active.src] || '—',
+      hint: 'Click to zoom',
+      frameCount: PHOTOS.length,
+      submit: this.submit,
+      sending: this.state.status === 'sending',
+      submitLabel: this.state.status === 'sending' ? 'Sending…' : this.state.status === 'sent' ? 'Sent' : 'Send message',
+      statusText: {
+        sending: 'Sending…',
+        sent: 'Message sent — thanks, I\u2019ll reply soon.',
+        error: 'Could not send from here. Please email me directly.',
+      }[this.state.status] || '',
+      statusColor: this.state.status === 'error' ? 'oklch(0.72 0.13 25)' : accent,
+      zLabel: zoom ? '100%' : 'Fit',
+      zMax: zoom ? 'none' : '100%',
+      zOverflow: zoom ? 'auto' : 'hidden',
+      zAlign: zoom ? 'flex-start' : 'center',
+      narrow,
+      stagePos: narrow ? 'static' : 'sticky',
+      stageOrder: narrow ? -1 : 0,
+      stageMinH: narrow ? '200px' : '430px',
+      stageMaxH: narrow ? '54vh' : '620px',
+      sideCols: narrow ? 'minmax(0, 1fr)' : '160px minmax(0, 1fr)',
+      lbPad: narrow ? '14px 12px' : '28px 32px',
+      arrowPad: narrow ? '0 2px' : '0 8px',
+      zCursor: zoom ? 'grab' : 'zoom-in',
+      toggleZoom: this.toggleZoom,
+      panStart: this.panStart,
+      panMove: this.panMove,
+      panEnd: this.panEnd,
+      scrollRef: this.scrollRef,
+      openActive: () => this.setState({ openSrc: this.state.activeSrc, zoom: false }),
+      close: () => {
+        if (this.panned) { this.panned = false; return; }
+        this.setState({ openSrc: null, zoom: false });
+      },
+      stop: (e) => e.stopPropagation(),
+      prev: (e) => { e.stopPropagation(); this.step(-1); },
+      next: (e) => { e.stopPropagation(); this.step(1); },
+      lb,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
