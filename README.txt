@@ -4,7 +4,7 @@ JP ASTROPHOTOGRAPHY — ready-to-upload site
 WHAT'S IN HERE
   index.html    the whole site
   support.js    required — index.html will not render without it
-  images/       the six photos
+  images/       the photos
 
 Keep all three together, and keep the same folder structure.
 
@@ -88,7 +88,7 @@ EDITING
   Photos are listed newest first.
 
 NOTE ON SPEED
-  The six PNGs total about 40 MB, which is slow on phone data.
+  The seven PNGs total about 48 MB, which is slow on phone data.
   Converting them to high-quality JPEGs would cut that to roughly 2 MB
   with no visible difference at web size.
 
