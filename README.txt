@@ -88,8 +88,8 @@ EDITING
   Photos are listed newest first.
 
 NOTE ON SPEED
-  The seven PNGs total about 48 MB, which is slow on phone data.
-  Converting them to high-quality JPEGs would cut that to roughly 2 MB
+  The ten PNGs total about 130 MB, which is slow on phone data.
+  Converting them to high-quality JPEGs would cut that to roughly 18 MB
   with no visible difference at web size.
 
   This is worth more on GitHub than on a drag-and-drop host: a repo
